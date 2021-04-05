@@ -1,4 +1,4 @@
-import { IAppError } from '../protocols/i-app-error';
+import { IAppError } from '../protocols/app-error-protocol';
 
 class AppError implements IAppError {
   public readonly name = 'AppError';

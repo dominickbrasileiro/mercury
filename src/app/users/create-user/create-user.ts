@@ -2,7 +2,7 @@ import { hash } from 'bcrypt';
 import { User } from '../../../entities/user';
 import authEnv from '../../../env/auth-env';
 import { AppError } from '../../../errors/app-error';
-import { IAppService } from '../../../protocols/i-app-service';
+import { IAppService } from '../../../protocols/app-service-protocol';
 import { UserRepository } from '../../../repositories/user-repository';
 
 interface IRequest {

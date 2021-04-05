@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { IAppController } from '../../../protocols/i-app-controller';
+import { IAppController } from '../../../protocols/app-controller-protocol';
 import { CreateUser } from './create-user';
 
 class CreateUserController implements IAppController {
