@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import { User } from '../../../entities/user';
-import { AppError } from '../../../errors/app-error';
-import { IAppService } from '../../../protocols/app-service-protocol';
-import { IHashProvider } from '../../../providers/hash-provider/models/hash-provider-model';
-import { IUserRepository } from '../../../repositories/user-repository/models/user-repository-model';
+import { User } from '../../entities/user';
+import { AppError } from '../../../../errors/app-error';
+import { IAppService } from '../../../../protocols/app-service-protocol';
+import { IHashProvider } from '../../../../providers/hash-provider/models/hash-provider-model';
+import { IUserRepository } from '../../repositories/user-repository/models/user-repository-model';
 
 interface IRequest {
   first_name: string;

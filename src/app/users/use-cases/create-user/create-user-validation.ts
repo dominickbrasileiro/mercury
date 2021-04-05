@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
-import { IAppValidation } from '../../../protocols/app-validation-protocol';
+import { IAppValidation } from '../../../../protocols/app-validation-protocol';
 
 class CreateUserValidation implements IAppValidation {
   async validate(

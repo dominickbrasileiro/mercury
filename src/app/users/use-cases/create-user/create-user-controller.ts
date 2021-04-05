@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { IAppController } from '../../../protocols/app-controller-protocol';
+import { IAppController } from '../../../../protocols/app-controller-protocol';
 import { CreateUser } from './create-user';
 
 class CreateUserController implements IAppController {

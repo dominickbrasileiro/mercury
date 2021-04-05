@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { createConnection } from 'typeorm';
-import { User } from '../../entities/user';
+import { User } from '../../app/users/entities/user';
 
 (async () => {
   const connection = await createConnection();

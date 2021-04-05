@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { CreateUserController } from '../app/users/create-user/create-user-controller';
-import { CreateUserValidation } from '../app/users/create-user/create-user-validation';
+import { CreateUserController } from '../app/users/use-cases/create-user/create-user-controller';
+import { CreateUserValidation } from '../app/users/use-cases/create-user/create-user-validation';
 
 const userRoutes = Router();
 
