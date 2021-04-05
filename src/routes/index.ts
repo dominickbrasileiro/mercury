@@ -1,10 +1,8 @@
 import { Router } from 'express';
-import { AppError } from '../errors/app-error';
+import { userRoutes } from './user-routes';
 
 const routes = Router();
 
-routes.use('/', (_req, _res) => {
-  throw new AppError('App Error Message', 400);
-});
+routes.use('/users', userRoutes);
 
 export { routes };
