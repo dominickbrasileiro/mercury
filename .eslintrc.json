@@ -20,11 +20,13 @@
     "prettier"
   ],
   "rules": {
+    "@typescript-eslint/ban-types": "off",
     "camelcase": "off",
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
     "no-console": "off",
     "no-empty-function": "off",
+    "no-shadow": "off",
     "no-useless-constructor": "off",
     "prettier/prettier": "error",
     "@typescript-eslint/naming-convention": [
