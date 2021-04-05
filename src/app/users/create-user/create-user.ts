@@ -1,9 +1,9 @@
 import { hash } from 'bcrypt';
-import { getRepository } from 'typeorm';
 import { User } from '../../../entities/user';
 import authEnv from '../../../env/auth-env';
 import { AppError } from '../../../errors/app-error';
 import { IAppService } from '../../../protocols/i-app-service';
+import { UserRepository } from '../../../repositories/user-repository';
 
 interface IRequest {
   first_name: string;
@@ -13,15 +13,19 @@ interface IRequest {
 }
 
 class CreateUser implements IAppService {
+  userRepository: UserRepository;
+
+  constructor() {
+    this.userRepository = new UserRepository();
+  }
+
   async execute({
     first_name,
     last_name,
     email,
     password,
   }: IRequest): Promise<User> {
-    const userRepository = getRepository(User);
-
-    const userAlreadyExists = await userRepository.findOne({ email });
+    const userAlreadyExists = await this.userRepository.findByEmail(email);
 
     if (userAlreadyExists) {
       throw new AppError('E-mail already used!', 400);
@@ -29,14 +33,12 @@ class CreateUser implements IAppService {
 
     const password_hash = await hash(password, authEnv.hashSalt);
 
-    const user = userRepository.create({
+    const user = await this.userRepository.create({
       first_name,
       last_name,
       email,
       password_hash,
     });
-
-    await userRepository.save(user);
 
     return user;
   }
