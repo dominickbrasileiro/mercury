@@ -12,8 +12,8 @@ module.exports = {
   ],
   entities: [
     process.env.NODE_ENV === 'production'
-      ? './dist/entities/*.js'
-      : './src/entities/*.ts',
+      ? './dist/**/entities/*.js'
+      : './src/**/entities/*.ts',
   ],
   cli: {
     migrationsDir:

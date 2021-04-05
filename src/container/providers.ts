@@ -5,4 +5,4 @@ import { IEncryptProvider } from '../providers/encrypt-provider/models/encrypt-p
 import { JwtEncryptProvider } from '../providers/encrypt-provider/implementations/jwt-encrypt-provider';
 
 container.register<IHashProvider>('HashProvider', BcryptHashProvider);
-container.register<IEncryptProvider>('Encryptprovider', JwtEncryptProvider);
+container.register<IEncryptProvider>('EncryptProvider', JwtEncryptProvider);
