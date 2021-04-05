@@ -1,8 +1,11 @@
 import { getRepository, Repository } from 'typeorm';
-import { User } from '../../entities/user';
-import { ICreateUserDTO, IUserRepository } from './user-repository-model';
+import { User } from '../../../entities/user';
+import {
+  ICreateUserDTO,
+  IUserRepository,
+} from '../models/user-repository-model';
 
-class UserRepositoryImplementation implements IUserRepository {
+class TypeORMUserRepository implements IUserRepository {
   private repository: Repository<User>;
 
   constructor() {
@@ -29,4 +32,4 @@ class UserRepositoryImplementation implements IUserRepository {
   }
 }
 
-export { UserRepositoryImplementation };
+export { TypeORMUserRepository };
