@@ -1,9 +1,8 @@
-import { hash } from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
 import { User } from '../../../entities/user';
-import authEnv from '../../../env/auth-env';
 import { AppError } from '../../../errors/app-error';
 import { IAppService } from '../../../protocols/app-service-protocol';
+import { IHashProvider } from '../../../providers/hash-provider/hash-provider-model';
 import { IUserRepository } from '../../../repositories/user-repository/user-repository-model';
 
 interface IRequest {
@@ -18,6 +17,9 @@ class CreateUser implements IAppService {
   constructor(
     @inject('UserRepository')
     private readonly userRepository: IUserRepository,
+
+    @inject('HashProvider')
+    private readonly hashProvider: IHashProvider,
   ) {}
 
   async execute({
@@ -32,7 +34,7 @@ class CreateUser implements IAppService {
       throw new AppError('E-mail already used!', 400);
     }
 
-    const password_hash = await hash(password, authEnv.hashSalt);
+    const password_hash = await this.hashProvider.hash(password);
 
     const user = await this.userRepository.create({
       first_name,
