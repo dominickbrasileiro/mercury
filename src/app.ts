@@ -1,6 +1,9 @@
-import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
+import 'reflect-metadata';
 import 'dotenv/config';
+import './container';
+
+import express, { NextFunction, Request, Response } from 'express';
 import { IAppError } from './protocols/app-error-protocol';
 import { routes } from './routes';
 
@@ -16,6 +19,7 @@ app.use(
     _next: NextFunction,
   ) => {
     if (err instanceof Error) {
+      console.log(err);
       return res.status(500).json({
         error: 'InternalServerError',
         message: 'An internal server error occurred. Please try again later.',

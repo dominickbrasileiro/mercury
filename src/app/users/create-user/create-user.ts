@@ -1,9 +1,10 @@
 import { hash } from 'bcrypt';
+import { inject, injectable } from 'tsyringe';
 import { User } from '../../../entities/user';
 import authEnv from '../../../env/auth-env';
 import { AppError } from '../../../errors/app-error';
 import { IAppService } from '../../../protocols/app-service-protocol';
-import { UserRepository } from '../../../repositories/user-repository';
+import { IUserRepository } from '../../../repositories/user-repository/user-repository-model';
 
 interface IRequest {
   first_name: string;
@@ -12,12 +13,12 @@ interface IRequest {
   password: string;
 }
 
+@injectable()
 class CreateUser implements IAppService {
-  userRepository: UserRepository;
-
-  constructor() {
-    this.userRepository = new UserRepository();
-  }
+  constructor(
+    @inject('UserRepository')
+    private readonly userRepository: IUserRepository,
+  ) {}
 
   async execute({
     first_name,

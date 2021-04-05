@@ -1,14 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
-import { User } from '../entities/user';
+import { User } from '../../entities/user';
+import { ICreateUserDTO, IUserRepository } from './user-repository-model';
 
-interface ICreateUserDTO {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password_hash: string;
-}
-
-class UserRepository {
+class UserRepositoryImplementation implements IUserRepository {
   private repository: Repository<User>;
 
   constructor() {
@@ -35,4 +29,4 @@ class UserRepository {
   }
 }
 
-export { UserRepository };
+export { UserRepositoryImplementation };
