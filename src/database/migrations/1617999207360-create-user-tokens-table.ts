@@ -19,15 +19,19 @@ export class createUserTokensTable1617999207360 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'expiration_date',
+            type: 'timestamp',
+            isNullable: false,
+          },
+          {
             name: 'user_id',
             type: 'uuid',
             isNullable: false,
           },
           {
-            name: 'id',
-            type: 'uuid',
-            isPrimary: true,
-            isUnique: true,
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
             isNullable: false,
           },
         ],
