@@ -27,6 +27,10 @@ class TypeORMUserRepository implements IUserRepository {
     return user;
   }
 
+  async update(user: User): Promise<void> {
+    await this.repository.save(user);
+  }
+
   async findById(id: string): Promise<User> {
     return this.repository.findOne(id);
   }

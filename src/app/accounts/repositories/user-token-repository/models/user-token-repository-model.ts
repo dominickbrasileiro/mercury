@@ -8,6 +8,7 @@ interface ICreateUserTokenDTO {
 
 interface IUserTokenRepository {
   create(userTokenData: ICreateUserTokenDTO): Promise<UserToken>;
+  deleteById(id: string): Promise<void>;
   findByToken(token: string): Promise<UserToken>;
 }
 

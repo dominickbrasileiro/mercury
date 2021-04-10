@@ -28,6 +28,10 @@ class TypeORMUserTokenRepository implements IUserTokenRepository {
     return userToken;
   }
 
+  async deleteById(id: string): Promise<void> {
+    await this.repository.delete(id);
+  }
+
   async findByToken(token: string): Promise<UserToken> {
     const userToken = await this.repository.findOne({ token });
     return userToken;
