@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { User } from './user';
 
-type IUserTokenType = 'refresh_token';
+type IUserTokenType = 'refresh_token' | 'reset_password_token';
 
 @Entity('user_tokens')
 class UserToken {
