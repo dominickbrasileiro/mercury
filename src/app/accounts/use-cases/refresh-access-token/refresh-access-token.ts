@@ -4,6 +4,7 @@ import { AppError } from '../../../../errors/app-error';
 import { IAppService } from '../../../../protocols/app-service-protocol';
 import { IDateProvider } from '../../../../providers/date-provider/models/date-provider-model';
 import { IEncryptProvider } from '../../../../providers/encrypt-provider/models/encrypt-provider-model';
+import { IUserRepository } from '../../repositories/user-repository/models/user-repository-model';
 import { IUserTokenRepository } from '../../repositories/user-token-repository/models/user-token-repository-model';
 
 interface IRequest {
@@ -15,6 +16,9 @@ class RefreshAccessToken implements IAppService {
   constructor(
     @inject('UserTokenRepository')
     private readonly userTokenRepository: IUserTokenRepository,
+
+    @inject('UserRepository')
+    private readonly userRepository: IUserRepository,
 
     @inject('DateProvider')
     private readonly dateProvider: IDateProvider,
@@ -34,6 +38,12 @@ class RefreshAccessToken implements IAppService {
 
     if (refreshToken.type !== 'refresh_token') {
       throw new AppError('Refresh token does not exist!', 400);
+    }
+
+    const user = await this.userRepository.findById(refreshToken.user_id);
+
+    if (!user) {
+      throw new AppError('User doest not exist!', 400);
     }
 
     const now = await this.dateProvider.getNow();
