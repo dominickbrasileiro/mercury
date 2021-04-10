@@ -27,6 +27,11 @@ class TypeORMUserTokenRepository implements IUserTokenRepository {
 
     return userToken;
   }
+
+  async findByToken(token: string): Promise<UserToken> {
+    const userToken = await this.repository.findOne({ token });
+    return userToken;
+  }
 }
 
 export { TypeORMUserTokenRepository };

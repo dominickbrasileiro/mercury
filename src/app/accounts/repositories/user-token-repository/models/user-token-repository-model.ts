@@ -8,6 +8,7 @@ interface ICreateUserTokenDTO {
 
 interface IUserTokenRepository {
   create(userTokenData: ICreateUserTokenDTO): Promise<UserToken>;
+  findByToken(token: string): Promise<UserToken>;
 }
 
 export { IUserTokenRepository, ICreateUserTokenDTO };

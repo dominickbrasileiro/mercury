@@ -9,6 +9,10 @@ class DayJSDateProvider implements IDateProvider {
   async addDays(date: Date, days: number): Promise<Date> {
     return dayjs(date).add(days, 'days').toDate();
   }
+
+  async isBefore(date: Date, dateToCompare: Date): Promise<boolean> {
+    return dayjs(date).isBefore(dateToCompare);
+  }
 }
 
 export { DayJSDateProvider };
