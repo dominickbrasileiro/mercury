@@ -5,7 +5,7 @@ import { IDateProvider } from '../../../../providers/date-provider/models/date-p
 import { IEncryptProvider } from '../../../../providers/encrypt-provider/models/encrypt-provider-model';
 import { IHashProvider } from '../../../../providers/hash-provider/models/hash-provider-model';
 import { IUserRepository } from '../../repositories/user-repository/models/user-repository-model';
-import { IUserTokenRepository } from '../../repositories/user-repository/models/user-token-repository-model';
+import { IUserTokenRepository } from '../../repositories/user-token-repository/models/user-token-repository-model';
 
 import authEnv from '../../../../env/auth-env';
 
