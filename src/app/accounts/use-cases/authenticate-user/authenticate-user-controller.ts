@@ -9,12 +9,16 @@ class AuthenticateUserController implements IAppController {
 
     const authenticateUser = container.resolve(AuthenticateUser);
 
-    const { user, token, refresh_token } = await authenticateUser.execute({
+    const {
+      user,
+      access_token,
+      refresh_token,
+    } = await authenticateUser.execute({
       email,
       password,
     });
 
-    return res.json({ user, token, refresh_token });
+    return res.json({ user, access_token, refresh_token });
   }
 }
 

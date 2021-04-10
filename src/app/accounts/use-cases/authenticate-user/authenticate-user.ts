@@ -20,7 +20,7 @@ interface IResponse {
     last_name: string;
     email: string;
   };
-  token: string;
+  access_token: string;
   refresh_token: string;
 }
 
@@ -59,7 +59,10 @@ class AuthenticateUser implements IAppService {
       throw new AppError('E-mail or password is incorrect!', 401);
     }
 
-    const token = await this.encryptProvider.encrypt({}, { subject: user.id });
+    const accessToken = await this.encryptProvider.encrypt(
+      {},
+      { subject: user.id },
+    );
 
     const now = await this.dateProvider.getNow();
 
@@ -75,7 +78,7 @@ class AuthenticateUser implements IAppService {
     });
 
     return {
-      token,
+      access_token: accessToken,
       refresh_token: refreshToken.token,
       user: {
         first_name: user.first_name,
