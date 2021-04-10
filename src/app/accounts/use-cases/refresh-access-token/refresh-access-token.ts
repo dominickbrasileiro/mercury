@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import authEnv from '../../../../env/auth-env';
 import { AppError } from '../../../../errors/app-error';
 import { IAppService } from '../../../../protocols/app-service-protocol';
 import { IDateProvider } from '../../../../providers/date-provider/models/date-provider-model';
@@ -48,7 +49,10 @@ class RefreshAccessToken implements IAppService {
 
     const accessToken = await this.encryptProvider.encrypt(
       {},
-      { subject: refreshToken.user_id },
+      {
+        subject: refreshToken.user_id,
+        expiresIn: `${authEnv.accessTokenExpirationMinutes}m`,
+      },
     );
 
     return accessToken;

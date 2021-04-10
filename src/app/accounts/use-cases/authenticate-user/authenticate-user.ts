@@ -61,7 +61,10 @@ class AuthenticateUser implements IAppService {
 
     const accessToken = await this.encryptProvider.encrypt(
       {},
-      { subject: user.id },
+      {
+        subject: user.id,
+        expiresIn: `${authEnv.accessTokenExpirationMinutes}m`,
+      },
     );
 
     const now = await this.dateProvider.getNow();

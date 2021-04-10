@@ -12,7 +12,7 @@ class JwtEncryptProvider implements IEncryptProvider {
   ): Promise<string> {
     const encrypted = sign(payload, authEnv.jwtSecret, {
       subject: options.subject,
-      expiresIn: options.expiresIn || authEnv.jwtExpiresIn,
+      expiresIn: options.expiresIn || '1d',
     });
 
     return encrypted;
