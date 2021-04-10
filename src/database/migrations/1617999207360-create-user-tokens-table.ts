@@ -14,9 +14,15 @@ class CreateUserTokensTable1617999207360 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: 'refresh_token',
+            name: 'type',
             type: 'varchar',
             isNullable: false,
+          },
+          {
+            name: 'token',
+            type: 'varchar',
+            isNullable: false,
+            isUnique: true,
           },
           {
             name: 'expiration_date',
@@ -50,7 +56,7 @@ class CreateUserTokensTable1617999207360 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('user_tokens');
   }
 }
 

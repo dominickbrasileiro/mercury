@@ -1,9 +1,9 @@
-import { UserToken } from '../../../entities/user-token';
+import { IUserTokenType, UserToken } from '../../../entities/user-token';
 
 interface ICreateUserTokenDTO {
   user_id: string;
-  refresh_token: string;
   expiration_date: Date;
+  type: IUserTokenType;
 }
 
 interface IUserTokenRepository {

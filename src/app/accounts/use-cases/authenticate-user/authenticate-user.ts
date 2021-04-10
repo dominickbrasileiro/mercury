@@ -61,14 +61,6 @@ class AuthenticateUser implements IAppService {
 
     const token = await this.encryptProvider.encrypt({}, { subject: user.id });
 
-    const refresh_token = await this.encryptProvider.encrypt(
-      { email },
-      {
-        subject: user.id,
-        expiresIn: `${authEnv.refreshTokenExpirationDays}d`,
-      },
-    );
-
     const now = await this.dateProvider.getNow();
 
     const refreshTokenExpirationDate = await this.dateProvider.addDays(
@@ -76,15 +68,15 @@ class AuthenticateUser implements IAppService {
       authEnv.refreshTokenExpirationDays,
     );
 
-    await this.userTokenRepository.create({
+    const refreshToken = await this.userTokenRepository.create({
       user_id: user.id,
-      refresh_token,
       expiration_date: refreshTokenExpirationDate,
+      type: 'refresh_token',
     });
 
     return {
       token,
-      refresh_token,
+      refresh_token: refreshToken.token,
       user: {
         first_name: user.first_name,
         last_name: user.last_name,

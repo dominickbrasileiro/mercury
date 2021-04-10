@@ -10,13 +10,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { User } from './user';
 
+type IUserTokenType = 'refresh_token';
+
 @Entity('user_tokens')
 class UserToken {
   @PrimaryColumn()
   id?: string;
 
   @Column()
-  refresh_token: string;
+  type: IUserTokenType;
+
+  @Column()
+  token: string;
 
   @Column()
   expiration_date: Date;
@@ -38,4 +43,4 @@ class UserToken {
   }
 }
 
-export { UserToken };
+export { UserToken, IUserTokenType };

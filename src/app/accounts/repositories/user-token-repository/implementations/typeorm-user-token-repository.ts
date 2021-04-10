@@ -1,4 +1,5 @@
 import { getRepository, Repository } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 import { UserToken } from '../../../entities/user-token';
 import {
   ICreateUserTokenDTO,
@@ -13,12 +14,13 @@ class TypeORMUserTokenRepository implements IUserTokenRepository {
   }
 
   async create(userTokenData: ICreateUserTokenDTO): Promise<UserToken> {
-    const { user_id, expiration_date, refresh_token } = userTokenData;
+    const { user_id, expiration_date, type } = userTokenData;
 
     const userToken = this.repository.create({
       user_id,
-      refresh_token,
       expiration_date,
+      type,
+      token: uuidv4(),
     });
 
     await this.repository.save(userToken);
